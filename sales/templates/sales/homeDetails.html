@@ -1,0 +1,66 @@
+{% extends 'sales/base.html' %}
+
+{% block content %}
+
+<section class="text-gray-700 body-font overflow-hidden">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap">
+      <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{home.name}}</h1>
+        <div class="flex mb-4">
+          <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Details</a>
+        </div>
+        <p class="leading-relaxed mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut optio culpa ipsum possimus veritatis veniam id explicabo enim atque nisi, dignissimos, expedita laudantium hic modi ad commodi inventore sunt officia?</p>
+        <div class="flex border-t border-gray-300 py-2">
+          <span class="text-gray-500">Location</span>
+          <span class="ml-auto text-gray-900">{{home.location}}</span>
+        </div>
+        <div class="flex border-t border-gray-300 py-2">
+          <span class="text-gray-500">Rooms</span>
+          <span class="ml-auto text-gray-900">{{home.no_of_rooms}}</span>
+        </div>
+        <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Area</span>
+          <span class="ml-auto text-gray-900">{{home.area}} sq.ft</span>
+        </div>
+        <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Agent</span>
+          <span class="ml-auto text-gray-900">{{home.agent}}</span>
+        </div>
+        <div class="flex">
+          <span class="title-font font-medium text-2xl text-gray-900">Rs: {{home.price}}</span>
+          <button class="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded" data-toggle="modal" data-target="#exampleModalLong">Enquiry</button>
+        </div>
+      </div>
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{home.image1.url}}">
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          Name:<input type="text" value="{{home.name}}">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

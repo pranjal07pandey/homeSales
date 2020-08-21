@@ -11,7 +11,7 @@ class Agent(models.Model):
     is_mvp = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.fname + self.lname
+        return self.fname +' '+ self.lname
 
 
 class Home(models.Model):
