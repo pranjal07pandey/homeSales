@@ -1,0 +1,32 @@
+{% extends 'sales/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+<div class="container px-5 py-24 mx-auto flex flex-wrap flex-col">
+
+    <div class="flex mx-auto flex-wrap mb-20">
+
+
+        <div class="w-full max-w-xs">
+
+<form action="" method="POST">
+
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+
+    <div class="flex items-center justify-between">
+        <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Signup">
+    </div>
+
+</form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'sales/base.html' %}
+
+{% block content %}
+
+<section class="text-gray-700 body-font">
+    <div class="container px-5 py-24 mx-auto flex flex-wrap flex-col">
+      <div class="flex mx-auto flex-wrap mb-20">
+        <a class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium bg-gray-100 inline-flex items-center leading-none border-indigo-500 text-indigo-500 tracking-wider rounded-t">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>AGENT
+        </a>
+        
+        
+      </div>
+      <img class="xl:w-1/4 lg:w-1/3 md:w-1/2 w-2/3 block mx-auto mb-10 object-cover object-center rounded" alt="hero" src="{{agent.image.url}}">
+      <div class="flex flex-col text-center w-full">
+        <h1 class="text-xl font-medium title-font mb-4 text-gray-900">{{agent.fname}} {{agent.fname}}</h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Agent Since: {{agent.joined_date}}</p>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Houses Sold: {{agent.house_sold}}</p>
+        <h6>Associated Houses:</h6>
+
+        <table class="table-auto text-center w-full">
+            <thead>
+              <tr>
+                <th class="px-4 py-2">House</th>
+                <th class="px-4 py-2">Price</th>
+                <th class="px-4 py-2">Location</th>
+
+              </tr>
+            </thead>
+            <tbody>
+            {% for x in home %}
+
+              <tr>
+                <td class="border px-4 py-2"><a href="{% url 'home-details' x.id %}">{{x.name}}</a></td>
+                <td class="border px-4 py-2">Rs: {{x.price}}</td>
+                <td class="border px-4 py-2"> {{x.location}}</td>
+              </tr>
+        {% endfor %}
+            
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
