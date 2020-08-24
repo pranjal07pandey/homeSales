@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -30,6 +31,8 @@ class Home(models.Model):
     
 
 class Contact(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default= '')
+    home = models.ForeignKey(Home, on_delete=models.DO_NOTHING, default = '')
     name = models.CharField(max_length = 100, default='', blank=False)
     phone = models.CharField(max_length= 100, default = '', blank=False)
     home_selected = models.CharField(max_length= 100, default = '', blank=False)

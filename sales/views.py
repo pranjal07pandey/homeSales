@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from .models import *
-from .forms import CreateUserForm
+from .forms import CreateUserForm, OrderForm
 from django.contrib.auth import authenticate, login, logout 
 
 
@@ -63,8 +63,19 @@ def index(request):
 
 def homeDetails(request, pk):
     home = Home.objects.get(id=pk)
+    form = OrderForm()
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            fs = form.save(commit=False)
+            fs.user = request.user
+            fs.home = home
+            fs.save()
+            return redirect('dashboard', request.user.id)
+            
     return render(request, 'sales/homeDetails.html',{
-        'home': home
+        'home': home,
+        'form':form
     })
 
 def allHomes(request):
@@ -91,5 +102,7 @@ def individualAgent(request, pk):
 
 
 def dashboard(request, pk):
-    
-    return render(request, 'sales/dashboard.html')
+    orders = Contact.objects.filter(user = request.user).order_by('-id')
+    return render(request, 'sales/dashboard.html', {
+        'orders': orders
+    })

@@ -1,1 +1,37 @@
-<a href="{% url 'logout' %}">Logout</a>
+{% extends 'sales/base.html' %}
+{% block content %}
+
+<a href="{% url 'logout' %}">logout</a>
+
+
+{% if request.user.groups %}
+    <p>Hello agent, {{request.user}}</p>
+{% endif  %}
+<div class="container">
+
+<table class="table-auto text-center w-full">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Ordered Homes</th>
+        <th class="px-4 py-2">Agent</th>
+        <th class="px-4 py-2">Price</th>
+        <th class="px-4 py-2">location</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+      <tr>
+        <td class="border px-4 py-2"><a href="{% url 'home-details' order.home.id %}">{{order.home_selected}}</a></td>
+        <td class="border px-4 py-2"><a href="{% url 'individual-agent' order.home.agent.id %}">{{order.home.agent}}</a></td>
+        <td class="border px-4 py-2">{{order.home.price}}</td>
+        <td class="border px-4 py-2">{{order.home.location}}</td>
+        
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+</div>
+    
+
+{% endblock %}
