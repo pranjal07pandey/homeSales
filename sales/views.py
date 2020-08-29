@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from .models import *
 from .forms import CreateUserForm, OrderForm
+from .filters import HomeFilter
 from django.contrib.auth import authenticate, login, logout 
 
 
@@ -79,9 +80,11 @@ def homeDetails(request, pk):
     })
 
 def allHomes(request):
+    f = HomeFilter(request.GET, queryset = Home.objects.all()) 
     homes = Home.objects.all()
     return render(request, 'sales/houses.html',{
-        'homes':homes
+        'homes':homes,
+        'filter': f
     })
 
 def agents(request):
